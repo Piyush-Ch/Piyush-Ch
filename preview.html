@@ -2,56 +2,256 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Solar System Animation Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Profile Preview - Piyush</title>
   <style>
-    body {
-      background-color: #0d1117;
-      color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
+    :root {
+      --bg-canvas: #0d1117;
+      --bg-card: #161b22;
+      --border-default: #30363d;
+      --border-muted: #21262d;
+      --fg-default: #e6edf3;
+      --fg-muted: #8b949e;
+      --accent-green: #39d353;
+      --accent-green-bright: #56d364;
     }
-    .markdown-body {
-      max-width: 900px;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--fg-default);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 32px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 920px;
       width: 100%;
-      border: 1px solid #30363d;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-muted);
+      padding-bottom: 14px;
+      color: var(--fg-muted);
+      font-size: 13.5px;
+    }
+
+    .header-bar .left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--fg-default);
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .markdown-body {
+      border: 1px solid var(--border-default);
       border-radius: 6px;
       padding: 32px;
-      background-color: #0d1117;
+      background-color: var(--bg-canvas);
     }
-    h1 {
-      border-bottom: 1px solid #21262d;
-      padding-bottom: 8px;
+
+    .banner-wrapper {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .banner-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .clean-heading {
+      margin-top: 16px;
+      margin-bottom: 6px;
+      border-bottom: none !important;
+      font-size: 1.8em;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--fg-default);
+      text-align: center;
+    }
+
+    .clean-subtext {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: var(--accent-green);
+      font-family: "Courier New", Consolas, monospace;
+      text-align: center;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 14px;
+      color: var(--fg-muted);
+      line-height: 1.85;
+    }
+
+    .feature-list li strong {
+      color: var(--fg-default);
+    }
+
+    .palette-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .palette-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0d1117;
+      border: 1px solid var(--border-muted);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-family: monospace;
+      color: var(--fg-default);
+    }
+
+    .color-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      color: var(--fg-muted);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #238636;
+      color: #ffffff;
+      border-color: #2ea043;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
-  <div class="markdown-body">
-    <!-- Float right exactly as GitHub markdown renders it -->
-    <img align="right" width="300" height="300" alt="Pixel Solar System" src="assets/solar-system.svg" />
-    
-    <h1>Hi, I'm Piyush 👋</h1>
-    <p>I do open source :)</p>
-    
-    <p>🚀 Building cool things, exploring the cosmos of code, and contributing to open source projects.</p>
-    
-    <h3>✨ About Me</h3>
-    <ul>
-      <li>🔭 Exploring modern distributed systems and developer tooling</li>
-    </ul>
-
-    <br clear="right" />
-    <hr style="border-color: #21262d; margin: 24px 0;" />
-    
-    <div style="display: flex; gap: 20px; align-items: center;">
-      <div>
-        <h3>Isolated 300x300 Widget View</h3>
-        <p>Testing direct embedded SVG element:</p>
+  <div class="container">
+    <div class="header-bar">
+      <div class="left">
+        <span class="status-dot"></span>
+        <span>GitHub Profile README Preview &mdash; <strong>Piyush-Ch / README.md</strong></span>
       </div>
-      <div>
-        <img width="300" height="300" src="assets/solar-system.svg" />
+      <div>Monochrome GitHub Chart Green Theme</div>
+    </div>
+
+    <!-- Active README display -->
+    <div>
+      <div class="section-title">
+        <span>⚡ Live GitHub Profile Preview</span>
+      </div>
+      <div class="markdown-body">
+        <!-- Animated Matrix Hacking Screen Banner with Greeting Overlay (No White Line) -->
+        <div class="banner-wrapper">
+          <img src="assets/matrix.svg" alt="Hello! I'm Piyush 👋 - I do open source :)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Alternative Standalone Background View -->
+    <div>
+      <div class="section-title">
+        <span>📂 Alternative: Pure Animated Matrix Background (Without Embedded Card)</span>
+      </div>
+      <div class="markdown-body">
+        <div class="banner-wrapper">
+          <img src="assets/matrix-bg.svg" alt="Hacking Screen Animation Background" />
+        </div>
+        <h3 class="clean-heading">Hello! I'm Piyush 👋</h3>
+        <p class="clean-subtext">I do open source :)</p>
+      </div>
+    </div>
+
+    <!-- Summary of Completed Changes -->
+    <div class="card">
+      <div class="section-title">
+        <span>✓ Customizations Applied</span>
+      </div>
+      <ul class="feature-list">
+        <li><strong>Movie Hacking Screen Animation:</strong> Smooth, infinite cascading matrix streams of binary digits (<code>0</code> and <code>1</code>) with luminous glowing laser heads and vertical streaks, accurately matching your reference image.</li>
+        <li><strong>Monochrome GitHub Contribution Chart Palette:</strong> Replaced the colorful solar system with strictly monochromatic green shades derived from GitHub's dark mode contribution graph.</li>
+        <li><strong>Removed White Horizontal Line:</strong> In GitHub markdown, <code># Hello! I'm Piyush</code> generates an <code>&lt;h1&gt;</code> tag with GitHub's default <code>border-bottom: 1px solid #21262d</code>. This divider line has been eliminated completely.</li>
+        <li><strong>Removed Solar System Asset:</strong> Cleaned up <code>assets/solar-system.svg</code> and <code>assets/solar-system.gif</code> from the repository.</li>
+      </ul>
+
+      <div style="margin-top: 18px;">
+        <span style="font-size: 13px; color: var(--fg-muted);"><strong>GitHub Contribution Chart Color Palette Used:</strong></span>
+        <div class="palette-row">
+          <div class="palette-chip"><span class="color-swatch" style="background:#020503;"></span>#020503 Background</div>
+          <div class="palette-chip"><span class="color-swatch" style="background:#0e4429;"></span>#0e4429 Level 1</div>
+          <div class="palette-chip"><span class="color-swatch" style="background:#006d32;"></span>#006d32 Level 2</div>
+          <div class="palette-chip"><span class="color-swatch" style="background:#26a641;"></span>#26a641 Level 3</div>
+          <div class="palette-chip"><span class="color-swatch" style="background:#39d353;"></span>#39d353 Level 4</div>
+          <div class="palette-chip"><span class="color-swatch" style="background:#7ee787;"></span>#7ee787 Glow Tint</div>
+          <div class="palette-chip"><span class="color-swatch" style="background:#ffffff;"></span>#ffffff Head Glow</div>
+        </div>
       </div>
     </div>
   </div>
